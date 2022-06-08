@@ -10,6 +10,7 @@ import { PrimengModule } from './primeng/primeng.module';
 import { SharedModule } from './shared/shared.module';
 import { UsuariosModule } from './usuarios/usuarios.module';
 
+
 @NgModule({
   declarations: [
     AppComponent
@@ -22,7 +23,7 @@ import { UsuariosModule } from './usuarios/usuarios.module';
     UsuariosModule,
     IncidenciasModule,
     SharedModule,
-    PrimengModule
+    PrimengModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

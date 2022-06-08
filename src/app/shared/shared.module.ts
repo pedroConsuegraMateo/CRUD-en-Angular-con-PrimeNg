@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MenuComponent } from './components/menu/menu.component';
 import { RouterLink, RouterModule } from '@angular/router';
 import { AppRoutingModule } from '../app-routing.module';
+import { PrimengModule } from '../primeng/primeng.module';
 
 
 
@@ -12,7 +13,8 @@ import { AppRoutingModule } from '../app-routing.module';
   ],
   imports: [
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    PrimengModule
   ],
   exports: [
     MenuComponent
