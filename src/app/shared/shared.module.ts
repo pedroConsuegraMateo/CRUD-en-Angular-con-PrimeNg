@@ -14,7 +14,8 @@ import { PrimengModule } from '../primeng/primeng.module';
   imports: [
     CommonModule,
     AppRoutingModule,
-    PrimengModule
+    PrimengModule,
+    
   ],
   exports: [
     MenuComponent

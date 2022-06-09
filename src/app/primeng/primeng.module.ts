@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import {MenuModule} from 'primeng/menu';
 import {CardModule} from 'primeng/card';
 import {ButtonModule} from 'primeng/button';
+import {ToastModule} from 'primeng/toast';
+import {ProgressBarModule} from 'primeng/progressbar';
 
 
 
@@ -14,7 +16,9 @@ import {ButtonModule} from 'primeng/button';
   ], exports: [
     MenuModule,
     CardModule,
-    ButtonModule
+    ButtonModule,
+    ToastModule,
+    ProgressBarModule
   ]
 })
 export class PrimengModule { }
