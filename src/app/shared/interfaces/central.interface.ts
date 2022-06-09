@@ -1,4 +1,4 @@
-export interface Welcome {
+export interface Central {
     id:            number;
     tipo:          Tipo;
     latitud:       string;

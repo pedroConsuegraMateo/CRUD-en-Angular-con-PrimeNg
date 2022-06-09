@@ -5,6 +5,7 @@ import {CardModule} from 'primeng/card';
 import {ButtonModule} from 'primeng/button';
 import {ToastModule} from 'primeng/toast';
 import {ProgressBarModule} from 'primeng/progressbar';
+import {TableModule} from 'primeng/table';
 
 
 
@@ -18,7 +19,8 @@ import {ProgressBarModule} from 'primeng/progressbar';
     CardModule,
     ButtonModule,
     ToastModule,
-    ProgressBarModule
+    ProgressBarModule,
+    TableModule
   ]
 })
 export class PrimengModule { }

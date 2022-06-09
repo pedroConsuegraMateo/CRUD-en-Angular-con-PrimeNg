@@ -1,33 +1,79 @@
 <p-toast></p-toast>
-<p-card header="Usuarios" subheader="Tabla de Usuarios" >
+<p-card header="Usuarios" >
         <p-progressBar *ngIf="!listaUsuarios[1]" [style]="{'height': '6px'}" mode="indeterminate"></p-progressBar>
-        <ng-container *ngIf="listaUsuarios[1]">
-            <table class="table table-hover">
-                <thead>
+        <div *ngIf="listaUsuarios[1]">
+            <p-table 
+                [value]="listaUsuarios" 
+                styleClass="p-datatable-striped" 
+                responsiveLayout="scroll"
+                [paginator]="true"
+                [rows]="5"
+                [showCurrentPageReport]="true"
+                [rowsPerPageOptions]="[5,10]">
+                <ng-template pTemplate="header">
                     <tr>
                         <th>ID</th>
-                        <th>Nombre</th>
+                        <th pSortableColumn="nombre">Nombre<p-sortIcon field="nombre"></p-sortIcon></th>
                         <th>Email</th>
-                        <th>Rol</th>
+                        <th pSortableColumn="rol.rol">Rol<p-sortIcon field="rol.rol"></p-sortIcon></th>
                         <th>Acciones</th>
                     </tr>
-                </thead>
-                <tbody>
-                    <ng-container *ngFor="let usuario of listaUsuarios ">
+                </ng-template>
+                <ng-template pTemplate="body" let-usuario>
+                    <tr>
+                        <td>{{usuario.id}}</td>
+                        <td>{{usuario.nombre}}</td>
+                        <td>{{usuario.correo}}</td>
+                        <td>{{usuario.rol.rol}}</td>
+                        <td>
+                            <span class="p-buttonset">
+                                <button pButton (click)="eliminarUsuarios()" icon="pi pi-pencil" class="p-button-warning p-button-sm"></button>
+                                <button pButton icon="pi pi-trash" class="p-button-danger p-button-sm"></button>
+                            </span>
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <p>Lista de usuarios</p>
+                </ng-template>
+            </p-table>
+        </div>
+        
+        
+        <div [hidden]="true">
+            <ng-container  *ngIf="listaUsuarios[1]">
+                <table class="table table-hover">
+                    <thead>
                         <tr>
-                            <td>{{usuario.id}}</td>
-                            <td>{{usuario.nombre}}</td>
-                            <td>{{usuario.correo}}</td>
-                            <td>{{usuario.rol.rol}}</td>
-                            <td>
-                                <span class="p-buttonset">
-                                    <button pButton (click)="eliminarUsuarios()" icon="pi pi-pencil" class="p-button-warning p-button-sm"></button>
-                                    <button pButton icon="pi pi-trash" class="p-button-danger p-button-sm"></button>
-                                </span>
-                            </td>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Rol</th>
+                            <th>Acciones</th>
                         </tr>
-                    </ng-container>
-                </tbody>
-            </table>
-        </ng-container>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngFor="let usuario of listaUsuarios ">
+                            <tr>
+                                <td>{{usuario.id}}    </td>
+                                <td>{{usuario.nombre}} </td>
+                                <td>{{usuario.correo}} </td>
+                                <td>{{usuario.rol.rol}}</td>
+                                <td>
+                                    <span class="p-buttonset">
+                                        <button pButton (click)="eliminarUsuarios()" icon="pi pi-pencil" class="p-button-warning p-button-sm"></button>
+                                        <button pButton icon="pi pi-trash" class="p-button-danger p-button-sm"></button>
+                                    </span>
+                                </td>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </table>
+            </ng-container>
+        
+        
+        
+        </div>
+
+
 </p-card>
