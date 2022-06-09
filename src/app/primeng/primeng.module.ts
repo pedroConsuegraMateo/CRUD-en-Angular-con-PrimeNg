@@ -6,6 +6,16 @@ import {ButtonModule} from 'primeng/button';
 import {ToastModule} from 'primeng/toast';
 import {ProgressBarModule} from 'primeng/progressbar';
 import {TableModule} from 'primeng/table';
+import {ConfirmPopupModule} from 'primeng/confirmpopup';
+import { RippleModule } from 'primeng/ripple';
+import {DialogModule} from 'primeng/dialog';
+import {ToolbarModule} from 'primeng/toolbar'
+import { InputTextModule } from 'primeng/inputtext';
+import {CascadeSelectModule} from 'primeng/cascadeselect';
+
+
+
+
 
 
 
@@ -20,7 +30,12 @@ import {TableModule} from 'primeng/table';
     ButtonModule,
     ToastModule,
     ProgressBarModule,
-    TableModule
+    TableModule,
+    ConfirmPopupModule,
+    RippleModule,
+    DialogModule,
+    ToolbarModule,
+    CascadeSelectModule
   ]
 })
 export class PrimengModule { }

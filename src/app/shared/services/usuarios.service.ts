@@ -9,8 +9,19 @@ import { Usuario } from '../interfaces/usuario.interface';
 export class UsuariosService {
 
   constructor(private httpClient: HttpClient ) { }
-  public getUsuarios(): Observable<Usuario[]> {
+  
+  public getAll(): Observable<Usuario[]> {
     const url = `http://localhost:3000/usuarios`;
     return this.httpClient.get<Usuario[]>(url);
+  }
+
+  public deleteById(id: number): Observable<Usuario>{
+    const url = `http://localhost:3000/usuarios/${id}`;
+    return this.httpClient.delete<Usuario>(url);
+  }
+
+  public deleteByUsuario(usuario: Usuario): Observable<Usuario>{
+    const url = `http://localhost:3000/usuarios/${usuario.id}`;
+    return this.httpClient.delete<Usuario>(url);
   }
 }

@@ -1,7 +1,35 @@
 <p-toast></p-toast>
+<p-confirmPopup></p-confirmPopup>
+<p-dialog header="Nuevo Usuario" [(visible)]="mostrandoDialogoUsuario" [modal]="true">
+    <ng-template pTemplate="content">
+        <div class="d-grid gap-3">
+            <input pInputText placeholder="id" type="text">
+            <input pInputText placeholder="Nombre" type="text">
+            <input pInputText placeholder="Correo" type="text">
+            <input pInputText placeholder="Contraseña" type="text">
+            <input pInputText placeholder="Rol" type="text">
+            <p-cascadeSelect name="rol" id="rol">
+                <option value="administrador">Administrador</option>
+                <option value="visor">Visor</option>
+                <option value="usuario">Usuario</option>
+            </p-cascadeSelect>
+        </div>
+    </ng-template>
+    
+    <ng-template pTemplate="footer">
+        <button pRipple pButton >Cancelar</button>
+        <button pRipple pButton >Guardar</button>
+    </ng-template>
+</p-dialog>
 <p-card header="Usuarios" >
         <p-progressBar *ngIf="!listaUsuarios[1]" [style]="{'height': '6px'}" mode="indeterminate"></p-progressBar>
         <div *ngIf="listaUsuarios[1]">
+            <p-toolbar>
+                <ng-template pTemplate="right">
+                    <button (click)="mostrarDialogoFormularioUsuario()" class="p-button-success" icon="pi pi-plus" pRipple pButton ></button>
+                </ng-template>
+                <ng-template pTemplate="left"></ng-template>
+            </p-toolbar>
             <p-table 
                 [value]="listaUsuarios" 
                 styleClass="p-datatable-striped" 
@@ -27,8 +55,8 @@
                         <td>{{usuario.rol.rol}}</td>
                         <td>
                             <span class="p-buttonset">
-                                <button pButton (click)="eliminarUsuarios()" icon="pi pi-pencil" class="p-button-warning p-button-sm"></button>
-                                <button pButton icon="pi pi-trash" class="p-button-danger p-button-sm"></button>
+                                <button pRipple pButton icon="pi pi-pencil" class="p-button-warning p-button-sm"></button>
+                                <button pRipple pButton (click)="confirmacionUsuario(usuario, $event)" [loading]="borrando" icon="pi pi-trash" class="p-button-danger p-button-sm"></button>
                             </span>
                         </td>
                     </tr>
@@ -38,42 +66,4 @@
                 </ng-template>
             </p-table>
         </div>
-        
-        
-        <div [hidden]="true">
-            <ng-container  *ngIf="listaUsuarios[1]">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Email</th>
-                            <th>Rol</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <ng-container *ngFor="let usuario of listaUsuarios ">
-                            <tr>
-                                <td>{{usuario.id}}    </td>
-                                <td>{{usuario.nombre}} </td>
-                                <td>{{usuario.correo}} </td>
-                                <td>{{usuario.rol.rol}}</td>
-                                <td>
-                                    <span class="p-buttonset">
-                                        <button pButton (click)="eliminarUsuarios()" icon="pi pi-pencil" class="p-button-warning p-button-sm"></button>
-                                        <button pButton icon="pi pi-trash" class="p-button-danger p-button-sm"></button>
-                                    </span>
-                                </td>
-                            </tr>
-                        </ng-container>
-                    </tbody>
-                </table>
-            </ng-container>
-        
-        
-        
-        </div>
-
-
 </p-card>
