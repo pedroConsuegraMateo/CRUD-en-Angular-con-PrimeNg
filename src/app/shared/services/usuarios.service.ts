@@ -24,4 +24,15 @@ export class UsuariosService {
     const url = `http://localhost:3000/usuarios/${usuario.id}`;
     return this.httpClient.delete<Usuario>(url);
   }
+
+  public add(usuario: Usuario): Observable<Usuario>{
+    const url = `http://localhost:3000/usuarios`;
+    return this.httpClient.post<Usuario>(url, usuario);
+  }
+  
+  public modify(usuario: Usuario): Observable<Usuario>{
+    const url = `http://localhost:3000/usuarios/${usuario.id}`;
+    return this.httpClient.patch<Usuario>(url, usuario);
+  }
+
 }

@@ -12,6 +12,7 @@ import {DialogModule} from 'primeng/dialog';
 import {ToolbarModule} from 'primeng/toolbar'
 import { InputTextModule } from 'primeng/inputtext';
 import {CascadeSelectModule} from 'primeng/cascadeselect';
+import { DropdownModule } from 'primeng/dropdown';
 
 
 
@@ -35,7 +36,8 @@ import {CascadeSelectModule} from 'primeng/cascadeselect';
     RippleModule,
     DialogModule,
     ToolbarModule,
-    CascadeSelectModule
+    CascadeSelectModule,
+    DropdownModule
   ]
 })
 export class PrimengModule { }

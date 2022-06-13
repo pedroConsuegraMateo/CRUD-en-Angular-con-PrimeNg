@@ -25,7 +25,7 @@ import { UsuariosModule } from './usuarios/usuarios.module';
     IncidenciasModule,
     SharedModule,
     PrimengModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

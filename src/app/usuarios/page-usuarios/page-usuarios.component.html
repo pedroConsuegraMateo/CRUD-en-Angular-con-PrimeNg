@@ -1,25 +1,34 @@
 <p-toast></p-toast>
 <p-confirmPopup></p-confirmPopup>
-<p-dialog header="Nuevo Usuario" [(visible)]="mostrandoDialogoUsuario" [modal]="true">
-    <ng-template pTemplate="content">
-        <div class="d-grid gap-3">
-            <input pInputText placeholder="id" type="text">
-            <input pInputText placeholder="Nombre" type="text">
-            <input pInputText placeholder="Correo" type="text">
-            <input pInputText placeholder="Contraseña" type="text">
-            <input pInputText placeholder="Rol" type="text">
-            <p-cascadeSelect name="rol" id="rol">
-                <option value="administrador">Administrador</option>
-                <option value="visor">Visor</option>
-                <option value="usuario">Usuario</option>
-            </p-cascadeSelect>
+<p-dialog
+  header="Nuevo usuario"
+  [(visible)]="mostrandoDialogoUsuario"
+  [maximizable]="true"
+  [modal]="true">
+
+    <div id="contenido">
+        <div>
+            <div class="d-grid gap-3">
+              <input pInputText [(ngModel)]="this.usuario.id" type="text" placeholder="Id" />
+              <input pInputText [(ngModel)]="this.usuario.nombre" type="text" placeholder="Nombre" />
+              <input pInputText [(ngModel)]="this.usuario.correo" type="email" placeholder="Correo" />
+              <input pInputText [(ngModel)]="this.usuario.clave" type="password" placeholder="Contraseña" />
+              <p-dropdown appendTo="body" [(ngModel)]="this.usuario.rol" [options]="rolesDisponibles" optionLabel="rol" ></p-dropdown>
+            </div>
+            <hr>
+            <code>
+                this.usuario = {{this.usuario | json }}
+            </code>
+            <hr>
+            
+            <div id="botonera" class="float-end">
+                <button (click)="ocultarDialogoFormularioUsuario()" pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text"></button>
+                <button (click)="guardarUsuario()" [loading]="procesoGuardando" pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text"></button>
+            </div>
         </div>
-    </ng-template>
-    
-    <ng-template pTemplate="footer">
-        <button pRipple pButton >Cancelar</button>
-        <button pRipple pButton >Guardar</button>
-    </ng-template>
+    </div> 
+  
+
 </p-dialog>
 <p-card header="Usuarios" >
         <p-progressBar *ngIf="!listaUsuarios[1]" [style]="{'height': '6px'}" mode="indeterminate"></p-progressBar>
@@ -55,7 +64,7 @@
                         <td>{{usuario.rol.rol}}</td>
                         <td>
                             <span class="p-buttonset">
-                                <button pRipple pButton icon="pi pi-pencil" class="p-button-warning p-button-sm"></button>
+                                <button pRipple pButton (click)="editarUsuario(usuario)" icon="pi pi-pencil" class="p-button-warning p-button-sm"></button>
                                 <button pRipple pButton (click)="confirmacionUsuario(usuario, $event)" [loading]="borrando" icon="pi pi-trash" class="p-button-danger p-button-sm"></button>
                             </span>
                         </td>
