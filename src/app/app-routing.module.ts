@@ -5,10 +5,13 @@ import { PageIncidenciasComponent } from './incidencias/page-incidencias/page-in
 import { PageUsuariosComponent } from './usuarios/page-usuarios/page-usuarios.component';
 
 const routes: Routes = [
-  {path: "", component: PageUsuariosComponent, pathMatch: "full"},
-  {path: "usuarios", component: PageUsuariosComponent},
+  {path: '', redirectTo: 'auth/login', pathMatch: 'full'},
+  {path: 'auth',loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)},
+  {path: 'usuarios', loadChildren: () => import('./usuarios/usuarios.module').then(m => m.UsuariosModule)},
+
   {path: "incidencias", component: PageIncidenciasComponent},
   {path: "centrales", component: PageCentralesComponent},
+
   {path: "**", redirectTo: ""}
 
 ];

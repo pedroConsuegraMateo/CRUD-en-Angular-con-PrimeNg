@@ -1,31 +1,32 @@
 <p-toast></p-toast>
 <p-confirmPopup></p-confirmPopup>
 <p-dialog
-  header="Nuevo usuario"
+  [header]="this.estoyModificando ? 'Modificar' : 'Nuevo usuario'"
   [(visible)]="mostrandoDialogoUsuario"
   [maximizable]="true"
   [modal]="true">
 
     <div id="contenido">
-        <div>
+        <form [formGroup]="formUsuario" (ngSubmit)="formularioUsuarioEnviado()">
             <div class="d-grid gap-3">
-              <input pInputText [(ngModel)]="this.usuario.id" type="text" placeholder="Id" />
-              <input pInputText [(ngModel)]="this.usuario.nombre" type="text" placeholder="Nombre" />
-              <input pInputText [(ngModel)]="this.usuario.correo" type="email" placeholder="Correo" />
-              <input pInputText [(ngModel)]="this.usuario.clave" type="password" placeholder="Contraseña" />
-              <p-dropdown appendTo="body" [(ngModel)]="this.usuario.rol" [options]="rolesDisponibles" optionLabel="rol" ></p-dropdown>
+                <input id="id" pInputText type="text" placeholder="Id" formControlName="id"/>
+                <input id="nombre" pInputText type="text" placeholder="Nombre" formControlName="nombre" />
+                <input id="correo" pInputText type="email" placeholder="Correo" formControlName="correo"/>
+                <input id="clave" pInputText type="password"  placeholder="Contraseña" formControlName="clave" />
+                <small *ngIf="esCampoInvalido('clave')" class="p-error d-block">Al menos 8 carácteres (1 mayúscula, 1 minúscula y números)</small>
+              <p-dropdown id="rol"  appendTo="body" [options]="rolesDisponibles" formControlName="rol" optionLabel="rol" ></p-dropdown>
             </div>
             <hr>
             <code>
-                this.usuario = {{this.usuario | json }}
+                this.usuario = {{this.formUsuario.value | json }}
             </code>
             <hr>
             
             <div id="botonera" class="float-end">
                 <button (click)="ocultarDialogoFormularioUsuario()" pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text"></button>
-                <button (click)="guardarUsuario()" [loading]="procesoGuardando" pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text"></button>
+                <button pTooltip="El formulario no es válido, revisa" [tooltipDisabled]="formUsuario.valid" tooltipPosition="right" (click)="formularioUsuarioEnviado()" [loading]="procesoGuardando" pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text"></button>
             </div>
-        </div>
+        </form>
     </div> 
   
 
@@ -43,7 +44,6 @@
                 [value]="listaUsuarios" 
                 styleClass="p-datatable-striped" 
                 responsiveLayout="scroll"
-                [paginator]="true"
                 [rows]="5"
                 [showCurrentPageReport]="true"
                 [rowsPerPageOptions]="[5,10]">

@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { PageUsuariosComponent } from './page-usuarios/page-usuarios.component';
 import { PrimengModule } from '../primeng/primeng.module';
 import { FormsModule } from '@angular/forms';
+import { UsuariosRoutingModule } from './usuarios-routing.module';
+
 
 
 
@@ -13,7 +15,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     PrimengModule,
-    FormsModule
+    FormsModule,
+    UsuariosRoutingModule
   ],
   exports: [
     PageUsuariosComponent
