@@ -1,1 +1,10 @@
 <p-menu [model]="items"></p-menu>
+<p-card *ngIf="usuarioActivo.id" [header]="this.usuarioActivo ? this.usuarioActivo.nombre : '(sin sesión)'"
+        [subheader]="this.usuarioActivo.correo"
+        [style]="{'width': '80vw', 'margin':'2rem 0rem'}"
+>
+<div >
+    <p-avatar  image="https://thispersondoesnotexist.com/image"></p-avatar>
+    <h5>{{this.usuarioActivo.rol.rol}}</h5>
+</div>
+</p-card>

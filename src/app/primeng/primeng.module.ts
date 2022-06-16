@@ -15,6 +15,7 @@ import {CascadeSelectModule} from 'primeng/cascadeselect';
 import { DropdownModule } from 'primeng/dropdown';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TooltipModule } from 'primeng/tooltip';
+import {AvatarModule} from 'primeng/avatar';
 
 
 
@@ -42,7 +43,9 @@ import { TooltipModule } from 'primeng/tooltip';
     CascadeSelectModule,
     DropdownModule,
     ReactiveFormsModule,
-    TooltipModule
+    TooltipModule,
+    AvatarModule
+    
   ]
 })
 export class PrimengModule { }
